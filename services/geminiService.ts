@@ -1,4 +1,3 @@
-
 import { GoogleGenAI, GenerateContentResponse } from "@google/genai";
 import { ChatMessage } from '../types';
 
@@ -27,7 +26,7 @@ const formatChatHistoryForGemini = (history: ChatMessage[]) => {
 export const analyzeImageAndStartTutoring = async (base64Image: string): Promise<string> => {
     const imagePart = fileToGenerativePart(base64Image.split(',')[1], base64Image.split(',')[0].split(':')[1].split(';')[0]);
     
-    const prompt = `You are Socrates, a compassionate and patient AI math tutor. A student has uploaded this image of a math problem. Your primary goal is to guide them, not to give them the answer.
+    const prompt = `You are Aryabhatt, a compassionate and patient AI math tutor, named after the classical Indian mathematician. A student has uploaded this image of a math problem. Your primary goal is to guide them, not to give them the answer.
     
     1. First, identify the math problem in the image.
     2. Then, explain what kind of problem it is (e.g., "This looks like a definite integral problem in calculus.").
@@ -48,7 +47,7 @@ export const continueConversation = async (history: ChatMessage[]): Promise<stri
     const model = ai.chats.create({
         model: 'gemini-2.5-flash',
         config: {
-            systemInstruction: `You are Socrates, a compassionate and patient AI math tutor. Your role is to guide a student through a math problem step-by-step without giving direct answers. The user has just responded to one of your guiding questions. Your task is to evaluate their response and continue the Socratic dialogue.
+            systemInstruction: `You are Aryabhatt, a compassionate and patient AI math tutor, named after the classical Indian mathematician. Your role is to guide a student through a math problem step-by-step without giving direct answers. The user has just responded to one of your guiding questions. Your task is to evaluate their response and continue the Socratic dialogue.
 
 1.  **If the user's answer is correct:** Acknowledge their success (e.g., "Exactly!" or "Well done."). Then, seamlessly guide them to the very next logical step with another leading question.
 2.  **If the user's answer is partially correct or shows some misunderstanding:** Gently point them in the right direction. You might ask them to double-check a specific part of their work or ask, "That's close! Can you walk me through how you got that?" to encourage them to find their own error.
@@ -69,7 +68,7 @@ export const explainConceptWithThinking = async (history: ChatMessage[]): Promis
     const model = ai.chats.create({
         model: 'gemini-2.5-pro',
         config: {
-            systemInstruction: `You are Socrates, a compassionate and patient AI math tutor. The user has asked a "why" question, indicating they need a conceptual explanation. Based on the conversation so far, your task is to explain the underlying mathematical concept or reasoning for the specific step we are on. Use analogies if helpful. Be clear, concise, and patient. After explaining, gently guide them back to the problem without moving to the next step yet. Your explanation should be thorough and demonstrate deep understanding.`,
+            systemInstruction: `You are Aryabhatt, a compassionate and patient AI math tutor, named after the classical Indian mathematician. The user has asked a "why" question, indicating they need a conceptual explanation. Based on the conversation so far, your task is to explain the underlying mathematical concept or reasoning for the specific step we are on. Use analogies if helpful. Be clear, concise, and patient. After explaining, gently guide them back to the problem without moving to the next step yet. Your explanation should be thorough and demonstrate deep understanding.`,
             thinkingConfig: { thinkingBudget: 32768 }
         },
         history: formatChatHistoryForGemini(history.slice(0, -1))

@@ -1,4 +1,3 @@
-
 import React, { useState, useRef, useEffect, useCallback } from 'react';
 import { ChatMessage as ChatMessageType, Sender } from './types';
 import * as geminiService from './services/geminiService';
@@ -84,9 +83,9 @@ const App: React.FC = () => {
         <header className="bg-slate-900/70 backdrop-blur-sm p-4 border-b border-slate-700 shadow-md">
           <h1 className="text-xl font-bold text-cyan-400 flex items-center gap-3">
             <ThinkingIcon className="w-6 h-6" />
-            Socratic Math Tutor
+            Aryabhatt
           </h1>
-          <p className="text-sm text-slate-400">Upload a math problem and let's solve it together.</p>
+          <p className="text-sm text-slate-400">Your AI math tutor. Upload a problem and let's solve it together.</p>
         </header>
         
         <main className="flex-1 overflow-y-auto p-4 md:p-6 space-y-6">
